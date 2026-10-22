@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Project 2 Report</title>
+        <style>
+            :root {
+                --color-neutral-95: hsl(220 10% 95%);
+                --color-neutral-90: hsl(220 10% 90%);
+                --color-neutral-80: hsl(220 10% 80%);
+                --color-neutral-70: hsl(220 10% 70%);
+                --color-neutral-60: hsl(220 10% 60%);
+                --color-neutral-50: hsl(220 10% 50%);
+                --color-neutral-40: hsl(220 10% 40%);
+                --color-neutral-30: hsl(220 10% 30%);
+                --color-neutral-20: hsl(220 10% 20%);
+                --color-neutral-10: hsl(220 10% 10%);
+            }
+
+            html {
+                font: 100%/1.5 system-ui;
+                counter-reset: figure;
+                background: var(--color-neutral-95);
+                max-width: min(75vw, 80em);
+                margin: 0 auto;
+            }
+
+            h1, h2, h3, h4, h5, h6 {
+                line-height: 1.1;
+                font-weight: 600;
+                text-wrap: balance;
+            }
+
+            h1, h2 {
+                border-bottom: 1px solid var(--color-neutral-80);
+                padding-bottom: 0.2em;
+            }
+
+            h1 {
+                margin-block: 1em 0.5rem;
+                font-size: clamp(2.5em, 150% + 2vh + 2vw, 10vmin);
+                font-weight: 800;
+            }
+
+            h1 small {
+                display: block;
+                width: fit-content;
+                padding: 0.2em 0.5em;
+                margin-inline: auto;
+                color: white;
+                background: var(--color-neutral-40);
+                font-size: 40%;
+                text-transform: uppercase;
+                white-space: nowrap;
+            }
+
+            h2 { font-size: 180%; color: var(--color-neutral-30); }
+            h3 { font-size: 130%; }
+
+            ul, ol { padding-inline-start: 2em; }
+            li::marker { color: var(--color-neutral-40); }
+            li + li { margin-top: 0.35em; }
+
+            header { padding-block: 1em; text-align: center; }
+
+            main {
+                background: white;
+                color: var(--color-neutral-20);
+                border-radius: 1rem;
+                padding: 0.1rem 2rem 2rem;
+            }
+
+            figure {
+                margin: 1em 0;
+                padding: 0.5rem;
+                margin-inline: -0.5em;
+                border: 1px solid var(--color-neutral-80);
+                box-shadow: 0 0.1em 0.2em var(--color-neutral-95);
+                text-align: center;
+                background: white;
+            }
+
+            figure img { max-width: 100%; height: auto; }
+
+            figure > figcaption {
+                font: 500 75% var(--font-sans);
+                background: var(--color-neutral-95);
+                padding: 0.5rem;
+                margin: -0.5rem;
+                margin-top: 0.5rem;
+                counter-increment: figure;
+                text-align: left;
+            }
+
+            figure > figcaption::before {
+                content: "Figure " counter(figure) ": ";
+                font-weight: bold;
+                color: var(--color-neutral-40);
+            }
+
+            .decision-score { font-weight: 700; }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <h1>
+                <small>Project 2</small>
+                Persuasive or Deceptive Visualization?
+            </h1>
+
+            <p><strong>Andy Li</strong> — <em>aml050@ucsd.edu</em></p>
+            <p><strong>Yuxuan Zhu</strong> — <em>yuz329@ucsd.edu</em></p>
+            <p><strong>Sebastian Roberson</strong> — <em>s1roberson@ucsd.edu</em></p>
+        </header>
+
+        <main>
+            <h2>Proposition: National wealth is a reliable predictor of better health.</h2>
+
+            <section>
+                <p> Our project investigated the relationship between national wealth(GDP), and population health(life expectancy at birth). 
+                    We used the Human Development Indicators dataset(1960–2020) for investigation.
+                    We designed two visualizations to argue both for and against the proposition. The supporting visualizations emphasize 
+                    the broad positive association between GDP and life expectancy, while the opposing one showed the uncertainty 
+                    in predicting health using national wealth.</p>
+                <h3>FOR the Proposition</h3>
+
+                <figure>
+                    <img src="viz_for_boxplot.png"
+                         alt="Boxplot of life expectancy by GDP quintile; median life expectancy rises monotonically from the poorest to the richest quintile." />
+                    <figcaption>
+                        Median life expectancy rises step-by-step from the poorest GDP quintile to the richest.
+                        Source: World Bank Human Development Indicators, 1960–2020.
+                    </figcaption>
+                </figure>
+                
+                <p>This boxplot divides observations into five wealth groups based on GDP per capita, from the poorest 20% to the richest 20%. The median life expectancy rises across these groups, making the relationship appear consistent and systematic.</p>
+                <b><p>Design Decisions and Rationale:</p></b>
+
+                <ul>
+                    <li>
+                        <b>1. Grouping observations(+1):</b> We grouped GDP per capita into five wealth categories, which transforms a continuous variable into an ordered comparison. This makes the increase in median life expectancy easier to recognize than in a crowded scatterplot. However, the transformation simplifies boundaries between groups and obscures differences between countries within each group.
+                    </li>
+                    <li>
+                        <b>2. Emphasizing median life expectancy (+1.5):</b> The boxes and their horizontal median lines direct attention toward the typical life expectancy of each wealth group. The increasing medians support the proposition clearly, but medians alone do not show whether individual observations in poorer and richer groups overlap substantially.
+                    </li>
+                    <li>
+                        <b>3. Showing distributions instead of averages (+2):</b> The boxplots show medians, quartiles, and outliers, providing more information than a chart of five averages would. This works well because readers can see both the upward trend and the variation around it, although the number of individual observations represented by each box is not immediately apparent.
+                    </li>
+                    <li>
+                        <b>4. Ordered color progression (+1):</b> The gradual change in color reinforces the progression from the poorest group to the richest group. This improves visual organization and helps readers follow the comparison, although the colors may subtly imply a smooth progression even when the underlying distributions overlap.
+                    </li>
+                    <li>
+                        <b>5. Suppressing individual country identities (-1):</b> By summarizing observations within five groups, the chart removes the identities and specific values of individual countries. This is effective for emphasizing the overall trend, but it hides counterexamples that might weaken the proposition. An alternative would be to supplement the chart with labeled countries or a separate view of within-group variation.
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>AGAINST the Proposition</h3>
+
+                <figure>
+                    <img src="viz_against_2.png"
+                        alt="Scatterplot of change in life expectancy versus change in log GDP per capita with regression line, r = 0.30, r-squared = 0.09, and a wide 95% prediction interval." />
+                    <figcaption>
+                        Within-country change in life expectancy versus change in log GDP per capita
+                        for countries with at least 25 years of data. The regression explains little
+                        variance (r = 0.30, r² = 0.09), and the 95% prediction interval spans roughly
+                        ±15 years. Source: World Bank Human Development Indicators, 1960–2020.
+                    </figcaption>
+                </figure>
+
+                <p>
+                    This scatterplot compares changes in GDP per capita with changes in life expectancy
+                    within individual countries over time. The weak correlation (r = 0.30) and low
+                    R² (0.09), combined with the wide prediction interval, suggest that income growth
+                    alone is not a reliable predictor of how much life expectancy will improve.
+                </p>
+
+                <b><p>Design Decisions and Rationale:</p></b>
+
+                <ul>
+                    <li>
+                        <b>1. Using within-country changes (+1.5):</b>
+                        We compared each country's first-to-last changes in GDP per capita and life
+                        expectancy, including countries with at least 25 years of data and at least
+                        25 observations. This directly examines whether income growth predicts
+                        life-expectancy growth while reducing the influence of confounders such as
+                        geography, institutions, and culture. However, using only the first and last
+                        observations ignores changes throughout the intervening years.
+                    </li>
+                    <li>
+                        <b>2. Showing a 95% prediction interval (-0.5):</b>
+                        The wide prediction interval shows the uncertainty when predicting changes
+                        for individual countries. A prediction interval is appropriate for evaluating
+                        predictive reliability, but it is wider than a confidence interval around the
+                        regression line and makes the model appear less reliable. Using red for both
+                        the interval and regression line further emphasizes this apparent weakness.
+                    </li>
+                    <li>
+                        <b>3. Selecting and labeling specific countries (-1):</b>
+                        We labeled China, Equatorial Guinea, Botswana, Japan, the United States,
+                        Norway, Rwanda, and Zimbabwe to show examples from different regions and
+                        positions in the scatterplot. However, this selection is curated rather than
+                        random or exhaustive, which can make the weak relationship appear more
+                        universal than it is. Labeling all countries or using a consistent selection
+                        rule would reduce this bias.
+                    </li>
+                    <li>
+                        <b>4. Using a strong title (-1.5):</b>
+                        The title “Growth ≠ longevity: decades of rising income barely move lifespan”
+                        challenges the idea that national wealth reliably predicts better health.
+                        However, the phrase “barely move” overstates the conclusion by downplaying
+                        substantial life-expectancy gains in some countries, such as China. A more
+                        neutral title would be “Income growth explains little of lifespan change.”
+                    </li>
+                    <li>
+                        <b>5. Showing the full data range and statistical measures (+1):</b>
+                        We displayed the full range of changes, kept both axes starting at zero,
+                        and reported r and R². These choices allow readers to see the variation
+                        among countries and evaluate the model's predictive strength. However,
+                        the wide range of values and prediction interval may visually dominate the
+                        chart, drawing attention away from countries that experienced substantial
+                        improvements.
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Final Reflection</h2>
+
+                <p>
+                    Across both panels, the hardest part was not computing the statistics but deciding how much
+                    context to leave in. The FOR boxplot was easy to make persuasive because binning continuous
+                    GDP data in quintiles forces a clean, upward staircase. However, that coarse grouping hides
+                    the massive within-group variance and the diminishing returns at higher incomes. The AGAINST
+                    scatterplot exploits this by examining raw, within-country changes, revealing that income
+                    growth is a surprisingly weak predictor of lifespan improvement. We were surprised by how
+                    much the title and annotation choices changed the perceived strength of the same r = 0.30
+                    relationship.
+                </p>
+
+                <p>
+                    Ethical analysis and visualization, for us, was less about a binary “honest/deceptive” label
+                    and more about whether the reader can recover the analytic choices that produced the
+                    impression. Acceptable persuasive choices include documented transformations, appropriate
+                    statistical intervals, full axes, and titles that state the comparison. Misleading choices
+                    include hiding outliers, coarse binning that erases contradictory points, cherry-picked
+                    annotations without disclosure, and causal or absolute language used for associational
+                    patterns. The boundary is fuzzy because a legitimate choice—a prediction interval, a raw
+                    scale, a within-country delta—can also be rhetorically convenient. Our working rule: if
+                    knowing about the choice would change a reader’s conclusion, the transformation should be
+                    disclosed in the caption or annotation.
+                </p>
+            </section>
+        </main>
+    </body>
+</html>
